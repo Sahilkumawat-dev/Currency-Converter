@@ -1,0 +1,19 @@
+Day-11
+==========================================
+12/30 days coding challenge (22-12-24).
+===========================================
+NotesSociety
+================================================
+NotesSociety link: https://notessociety.netlify.app/
+
+=======================================================
+follow on WhatsApp group by website..
+https://chat.whatsapp.com/IbFLOvxqw5I9opfiS0PCg4
+============================================================
+"Currency Converter"  
+With the help of currency converter, you can change the currency of any country into another currency.
+
+##Using API
+ 
+===================================================
+

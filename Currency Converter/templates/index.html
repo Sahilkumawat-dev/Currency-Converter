@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter|NotesSociety</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* NotesSociety */
+        h3,a:hover{
+        color:black;
+        text-decoration: none;
+        }
+        h3,a{
+            text-align: center;
+            color: #007bff;  
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #007bff;
+        }
+                /* NotesSociety */
+
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group select, .form-group input {
+            height: 45px;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .alert {
+            font-size: 1.2rem;
+        }
+                /* NotesSociety */
+
+        .whatsapp-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+            background-color: #25d366;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3><a href="https://notessociety.netlify.app/">NotesSociety</a></h3>
+        <h1>Currency Converter</h1>
+        <form id="converter-form" method="POST">
+            <div class="form-group">
+                <!-- NotesSociety  -->
+
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="from_currency">From Currency</label>
+                <select id="from_currency" name="from_currency" class="form-control" required>
+                    {% for currency in currencies %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+                            <!-- NotesSociety  -->
+
+            <div class="form-group">
+                <label for="to_currency">To Currency</label>
+                <select id="to_currency" name="to_currency" class="form-control" required>
+                    {% for currency in currencies %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+
+        <div id="result" class="mt-4"></div>
+
+        <a href="https://chat.whatsapp.com/IbFLOvxqw5I9opfiS0PCg4
+        " class="whatsapp-btn" target="_blank">
+            Contact us on WhatsApp
+        </a>
+    </div>
+                                <!-- NotesSociety  -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#converter-form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                // NotesSociety
+
+                $.post('/convert', formData, function(data) {
+                    if (data.error) {
+                        $('#result').html('<div class="alert alert-danger">' + data.error + '</div>');
+                    } else {
+                        $('#result').html('<div class="alert alert-success">Converted Amount: ' + data.converted_amount + '</div>');
+                    }
+                }).fail(function() {
+                    $('#result').html('<div class="alert alert-danger">An error occurred. Please try again.</div>');
+                });
+                                // NotesSociety
+
+            });
+        });
+    </script>
+</body>
+</html>
